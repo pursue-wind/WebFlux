@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SSE</title>
+</head>
+<body>
+
+<script>
+var sse = new EventSource("/flux");
+
+sse.onmessage = function(evt) {
+  console.log("message",evt.data,evt);
+}
+
+sse.addEventListener("me",function(e) {
+    console.log("me Event", e.data, e);
+    if (e.data == 3) {
+        sse.close();
+    }
+});
+</script>
+</body>
+</html>
